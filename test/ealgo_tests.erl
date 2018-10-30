@@ -21,15 +21,15 @@ all_test_() ->
         fun() -> error_logger:tty(false) end,
         fun(_) -> error_logger:tty(true) end,
         [
-            {<<"test cartesian_product">>,          fun test_cartesian_product/0},
-            {<<"test combinations">>,               fun test_combinations/0},
-            {<<"test permutations">>,               fun test_permutations/0},
-            {<<"test next_permutation">>,           fun test_next_permutation/0},
-            {<<"test rabin_karp">>,                 fun test_rabin_karp/0},
-            {<<"test sgn">>,                        fun test_sgn/0},
-            {<<"test boole">>,                      fun test_boole/0},
-            {<<"test ustep">>,                      fun test_ustep/0},
-            {<<"test id">>,                         fun test_id/0}
+            {<<"test cartesian_product">>, fun test_cartesian_product/0},
+            {<<"test combinations">>,      fun test_combinations/0},
+            {<<"test permutations">>,      fun test_permutations/0},
+            {<<"test next_permutation">>,  fun test_next_permutation/0},
+            {<<"test rabin_karp">>,        fun test_rabin_karp/0},
+            {<<"test sgn">>,               fun test_sgn/0},
+            {<<"test boole">>,             fun test_boole/0},
+            {<<"test ustep">>,             fun test_ustep/0},
+            {<<"test id">>,                fun test_id/0}
         ]
     }.
 
@@ -238,5 +238,4 @@ test_id() ->
     ?assertEqual(id(233)
                 , 233),
     ok.
-
 

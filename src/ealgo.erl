@@ -23,8 +23,8 @@
 
 %% https://en.wikipedia.org/wiki/Cartesian_product
 %% Gives the cartesian product of a list of list.
--spec cartesian_product(L :: [list()]) ->
-    R :: [list()].
+-spec cartesian_product(L :: [[term()]]) ->
+    R :: [[term()]].
 cartesian_product([     ]) -> [[]];
 cartesian_product([A | T]) ->
     B = cartesian_product(T),
@@ -33,7 +33,7 @@ cartesian_product([A | T]) ->
 
 %% Gives all combinations of L.
 -spec combinations(L :: [term()]) ->
-    R :: [list()].
+    R :: [[term()]].
 combinations([     ]) -> [[]];
 combinations([H | T]) ->
     A = B = combinations(T),
@@ -42,7 +42,7 @@ combinations([H | T]) ->
 
 %% Gives all combinations of L containing exactly N elements.
 -spec combinations(L :: [term()], N :: non_neg_integer()) ->
-    R :: [list()].
+    R :: [[term()]].
 combinations(L, N) when not is_list(L)
                       ; not is_integer(N)
                       ; not (N >= 0) ->
@@ -57,10 +57,11 @@ combinations([H | T], N) ->
 
 %% Gives all permutations of L.
 -spec permutations(L :: [term()]) ->
-    R :: [list()].
+    R :: [[term()]].
 permutations([]) -> [[]];
 permutations(L) when is_list(L) ->
     permutations_h1(L, []).
+
 permutations_h1([     ], _) -> [];
 permutations_h1([H | T], C) ->
     A = permutations(lists:reverse(C, T)),
@@ -70,7 +71,7 @@ permutations_h1([H | T], C) ->
 
 %% Gives all permutations of L containing exactly N elements.
 -spec permutations(L :: [term()], N :: non_neg_integer()) ->
-    R :: [list()].
+    R :: [[term()]].
 permutations(L, N) when not is_list(L)
                       ; not is_integer(N)
                       ; not (N >= 0) ->
@@ -79,6 +80,7 @@ permutations( _ , 0) -> [[]];
 permutations([ ], _) -> [  ];
 permutations( L , N) ->
     permutations_h2(L, N, []).
+
 permutations_h2([     ], _, _) -> [];
 permutations_h2([H | T], N, C) ->
     A = permutations(lists:reverse(C, T), N - 1),
@@ -91,12 +93,14 @@ permutations_h2([H | T], N, C) ->
     {true, R :: [term()]} | false.
 next_permutation(L) when is_list(L) ->
     next_permutation_h1(lists:reverse(L), []).
+
 next_permutation_h1([J, I | A], B) when I < J ->
     S = next_permutation_h2([I | lists:reverse(B, [J])], []),
     {true, lists:reverse(A, S)};
 next_permutation_h1([H | A], B) ->
     next_permutation_h1(A, [H | B]);
 next_permutation_h1(_, _) -> false.
+
 next_permutation_h2([I, J | A], B) when I < J ->
     [J | lists:reverse(B, [I | A])];
 next_permutation_h2([I, H | A], B) ->
@@ -147,7 +151,7 @@ rabin_karp_h1(Iterate, Accept, Pos, [Out | OutList2], WinHash, IsMatch, [In | In
 -spec sgn(X :: number()) ->
     R :: -1 | 0 | 1.
 sgn(X) when not is_integer(X)
-           , not is_float(X) ->
+          , not is_float(X) ->
     erlang:error(badarg);
 sgn(X) when X > 0 ->  1;
 sgn(X) when X < 0 -> -1;
@@ -243,7 +247,7 @@ get_rand_elem(List) ->
     Elem.
 
 
--spec get_rand_elems(List :: list(), Amount :: integer) ->
+-spec get_rand_elems(List :: list(), Amount :: integer()) ->
     R :: {ok, list()} | {error, _}.
 get_rand_elems([], _Amount) ->
     {error, <<"ListEmpty">>};

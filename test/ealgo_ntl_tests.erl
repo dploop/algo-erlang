@@ -15,12 +15,12 @@ all_test_() ->
         fun() -> error_logger:tty(false) end,
         fun(_) -> error_logger:tty(true) end,
         [
-              {<<"test quotient">>, fun test_quotient/0}
-            , {<<"test remainder">>, fun test_remainder/0}
+              {<<"test quotient">>,           fun test_quotient/0}
+            , {<<"test remainder">>,          fun test_remainder/0}
             , {<<"test quotient_remainder">>, fun test_quotient_remainder/0}
-            , {<<"test is_divisible">>, fun test_is_divisible/0}
-            , {<<"test is_odd">>, fun test_is_odd/0}
-            , {<<"test is_even">>, fun test_is_even/0}
+            , {<<"test is_divisible">>,       fun test_is_divisible/0}
+            , {<<"test is_odd">>,             fun test_is_odd/0}
+            , {<<"test is_even">>,            fun test_is_even/0}
         ]
     }.
 
